@@ -566,6 +566,8 @@ get_attrs(RelPath, [F | Rest], FileMod, FS0, Vsn, Acc) ->
 	    get_attrs(RelPath, Rest, FileMod, FS1, Vsn, [{Name, Attrs} | Acc]);
 	{{error, enoent}, FS1} ->
 	    get_attrs(RelPath, Rest, FileMod, FS1, Vsn, Acc);
+	{{error, eacces}, FS1} ->
+	    get_attrs(RelPath, Rest, FileMod, FS1, Vsn, Acc);
 	{Error, FS1} ->
 	    {Error, FS1}
     end.
